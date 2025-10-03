@@ -56,6 +56,10 @@ public class Q2Analysis {
                         context.write(word, lineNumber);
                     }
                     break;
+                    
+                default:
+                    // Unknown part, skip
+                    break;
             }
         }
     }
@@ -92,7 +96,7 @@ public class Q2Analysis {
                 for (Text val : values) {
                     result.set(val);
                     context.write(key, result);
-                    break; // Should only be one value per key
+                    break; // Should only be one value per key (intentional)
                 }
             }
         }

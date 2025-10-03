@@ -19,7 +19,7 @@ public class Q1Analysis {
     private static final Pattern TOKENIZER = Pattern.compile("[^a-zA-Z]+");
     
     public static class Q1Mapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-        private final static IntWritable one = new IntWritable(1);
+        private static final IntWritable one = new IntWritable(1);
         private Text word = new Text();
         private String part;
 
@@ -49,11 +49,15 @@ public class Q1Analysis {
                         break;
                         
                     case "C": // Unique Words by Pattern
-                        if (token.length() > 0) {
+                        if (!token.isEmpty()) {
                             String keyPattern = token.length() + "," + token.charAt(0);
                             word.set(keyPattern);
                             context.write(word, one);
                         }
+                        break;
+                        
+                    default:
+                        // Unknown part, skip
                         break;
                 }
             }
@@ -95,7 +99,6 @@ public class Q1Analysis {
         
         String part = args[2];
         conf.set("part", part);
-        
         Job job = Job.getInstance(conf, "Q1 Analysis " + part);
         job.setJarByClass(Q1Analysis.class);
         job.setMapperClass(Q1Mapper.class);

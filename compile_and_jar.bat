@@ -24,7 +24,13 @@ if %errorlevel% neq 0 (
 )
 
 echo Creating Q1Analysis.jar...
-jar cf Q1Analysis.jar Q1Analysis*.class
+echo Main-Class: Q1Analysis > manifest.txt
+jar cfm Q1Analysis.jar manifest.txt Q1Analysis*.class
+cd lib
+for %%f in (*.jar) do (
+    jar uf ..\Q1Analysis.jar %%f
+)
+cd ..
 if %errorlevel% neq 0 (
     echo Error creating Q1Analysis.jar
     pause
@@ -32,7 +38,13 @@ if %errorlevel% neq 0 (
 )
 
 echo Creating Q2Analysis.jar...
-jar cf Q2Analysis.jar Q2Analysis*.class
+echo Main-Class: Q2Analysis > manifest2.txt
+jar cfm Q2Analysis.jar manifest2.txt Q2Analysis*.class
+cd lib
+for %%f in (*.jar) do (
+    jar uf ..\Q2Analysis.jar %%f
+)
+cd ..
 if %errorlevel% neq 0 (
     echo Error creating Q2Analysis.jar
     pause
