@@ -1,8 +1,8 @@
 @echo off
 echo Compiling and creating JAR files for Q1 and Q2...
 
-REM Set Hadoop classpath (adjust path as needed)
-set HADOOP_CLASSPATH=%HADOOP_HOME%\share\hadoop\common\*;%HADOOP_HOME%\share\hadoop\mapreduce\*;%HADOOP_HOME%\share\hadoop\common\lib\*
+REM Set Hadoop classpath
+set HADOOP_CLASSPATH=.\lib\hadoop-common-3.3.4.jar;.\lib\hadoop-mapreduce-client-core-3.3.4.jar;.\lib\hadoop-hdfs-client-3.3.4.jar;.\lib\hadoop-annotations-3.3.4.jar;.\lib\hadoop-auth-3.3.4.jar
 
 REM Create output directory
 if not exist "output" mkdir output
